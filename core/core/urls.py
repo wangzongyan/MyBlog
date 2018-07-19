@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import path
+from myblog import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home, name = 'home'),
+    path(r'in/<slug:name>/', views.introduction, name = 'introduction'),
+    path(r'blog/<slug:name>/<int:article_num>/', views.blog, name = 'blog'),
 ]
